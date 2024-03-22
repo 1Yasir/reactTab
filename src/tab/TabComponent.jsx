@@ -14,6 +14,7 @@ function TabComponent(props) {
                     <button
                         onClick={() => handelClick(i)}
                         key={i}
+                        style={{color : "white",background : "black"}}
                     >
                         {tab.label}
                     </button>

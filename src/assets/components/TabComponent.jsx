@@ -11,6 +11,8 @@ function TabComponent(props) {
         setActiveTab(i);
     }
 
+    const activeTabContent = tabs.find((tab, i) => activeTab === i);
+
 
     return (
         <Container className='py-5'>
@@ -29,16 +31,9 @@ function TabComponent(props) {
                         ))}
                     </div>
 
-                    {tabs.map((tab, i) => (
-
-
-                        activeTab === i && (
-
-                            <div dangerouslySetInnerHTML={{ __html: tab.content }} key={i} />
-
-
-                        )
-                    ))}
+                    {activeTabContent && (
+                        <div dangerouslySetInnerHTML={{ __html: activeTabContent.content }} />
+                    )}
                 </Col>
             </Row>
         </Container>

@@ -8,9 +8,10 @@ function TabComponent(props) {
     const { tabs } = props;
     const [scroll, setScroll] = useState(0);
 
+
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 10) {
                 setScroll(window.scrollY);
             } else {
                 setScroll(0);
@@ -37,7 +38,7 @@ function TabComponent(props) {
         <Container className='py-5'>
             <Row>
                 <Col>
-                    <div className={`text-center tab-button mb-5 ${scroll > 10 ? 'sticky' : ''}`}>
+                    <div className={`text-center tab-button mb-5 ${scroll > 5 ? 'sticky' : ''}`}>
                         {tabs.map((tab, i) => (
                             <Button
                                 onClick={() => handleClick(i)}

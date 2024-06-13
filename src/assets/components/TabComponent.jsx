@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from '@mui/material/Button';
 import { Col, Row } from 'react-bootstrap';
@@ -6,10 +6,29 @@ import { Col, Row } from 'react-bootstrap';
 function TabComponent(props) {
     const [activeTab, setActiveTab] = useState(0);
     const { tabs } = props;
+    const [scroll, setScroll] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setScroll(window.scrollY);
+            } else {
+                setScroll(0);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     function handleClick(i) {
         setActiveTab(i);
     }
+
+
 
     const activeTabContent = tabs.find((tab, i) => activeTab === i);
 
@@ -18,7 +37,7 @@ function TabComponent(props) {
         <Container className='py-5'>
             <Row>
                 <Col>
-                    <div className='text-center mb-5'>
+                    <div className={`text-center tab-button mb-5 ${scroll > 10 ? 'sticky' : ''}`}>
                         {tabs.map((tab, i) => (
                             <Button
                                 onClick={() => handleClick(i)}

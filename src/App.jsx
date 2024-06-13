@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TabComponent from './assets/components/TabComponent';
 import Header from './assets/components/Header';
+import "./App.css"
 
 
 function App() {
